@@ -190,3 +190,19 @@ manufacturingBusiness.forEach(business => {
   let list = createHTMLForManufacturingBusiness(business);
   listOfManufacturingBusiness.innerHTML += list;
 });
+
+
+/*
+    Using map(), to extract the purchasing agent object
+    from each business and store it in a new array
+*/
+const agentList = document.querySelector("#purchasingAgent-container")
+agentList.innerHTML +="<h1>Purchasing Agents</h1>"
+
+const agents = businesses.map(business => {
+  return business.purchasingAgent
+})
+
+agents.forEach(agent => {
+    agentList.innerHTML += `<h2>${agent.nameFirst} ${agent.nameLast}</h2>`
+})
