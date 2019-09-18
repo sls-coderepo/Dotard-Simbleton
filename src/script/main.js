@@ -111,26 +111,23 @@ const businesses = [
   }
 ];
 
-
-
 const listOfBusiness = document.querySelector("#activeBusiness-container");
 listOfBusiness.innerHTML = "<h1>Active Business</h1>";
 
-const createHTML = (businessObj) => {
+const createHTML = businessObj => {
   return `<section>
   <h2>${businessObj.companyName}</h2>
   <p>${businessObj.addressFullStreet}</p>
   <p>${businessObj.addressCity} ${businessObj.addressStateCode} ${businessObj.addressZipCode}</p>
-  <hr></section>`
- 
-} 
+  <hr></section>`;
+};
 
- businesses.forEach(business => {
-      let list = createHTML(business);
-      listOfBusiness.innerHTML += list;
-  })
+businesses.forEach(business => {
+  let list = createHTML(business);
+  listOfBusiness.innerHTML += list;
+});
 
-  /* businesses.forEach(business => {
+/* businesses.forEach(business => {
   listOfBusiness.innerHTML += `
     <h2>${business.companyName}</h2>
     <p>
@@ -145,33 +142,51 @@ const createHTML = (businessObj) => {
 
 // Array to contain all the New York businesses
 
-const listOfBusinessInNewYork = document.querySelector("#businessInNY-container");
+const listOfBusinessInNewYork = document.querySelector(
+  "#businessInNY-container"
+);
 listOfBusinessInNewYork.innerHTML = "<h1>Business in New York</h1>";
 
- const newYorkBusinesses = businesses.filter(business => {
-  let inNewYork = false
+const newYorkBusinesses = businesses.filter(business => {
+  let inNewYork = false;
   if (business.addressStateCode === "NY") {
-    inNewYork = true
+    inNewYork = true;
   }
-  return inNewYork
-})
-console.log(newYorkBusinesses)
+  return inNewYork;
+});
+;
 
-
-const createHTMLForBusinessInNY = (businessObj) => {
+const createHTMLForBusinessInNY = businessObj => {
   return `<h2>${businessObj.companyName}</h2>
   <p>${businessObj.addressFullStreet}</p>
   <p>${businessObj.addressCity} ${businessObj.addressStateCode} ${businessObj.addressZipCode}</p>
-  <hr>`
- 
-} 
+  <hr>`;
+};
 
 newYorkBusinesses.forEach(business => {
   let list = createHTMLForBusinessInNY(business);
   listOfBusinessInNewYork.innerHTML += list;
-})
+});
 
-
-
-  
- 
+//Array to contain all Manufacturing Business
+const listOfManufacturingBusiness = document.querySelector(
+  "#manufacturingBusiness-container"
+);
+listOfManufacturingBusiness.innerHTML = "<h1>Manufacturing Business</h1>";
+const manufacturingBusiness = businesses.filter(business => {
+  let isManufacturingBusiness = false;
+  if (business.companyIndustry === "Manufacturing") {
+    isManufacturingBusiness = true;
+  }
+  return isManufacturingBusiness;
+});
+const createHTMLForManufacturingBusiness = businessObj => {
+  return `<h2>${businessObj.companyName}</h2>
+<p>${businessObj.addressFullStreet}</p>
+<p>${businessObj.addressCity} ${businessObj.addressStateCode} ${businessObj.addressZipCode}</p>
+<hr>`;
+};
+manufacturingBusiness.forEach(business => {
+  let list = createHTMLForManufacturingBusiness(business);
+  listOfManufacturingBusiness.innerHTML += list;
+});
