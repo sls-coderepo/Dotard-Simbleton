@@ -113,16 +113,15 @@ const businesses = [
 
 
 
-const listOfBusiness = document.querySelector("#container");
+const listOfBusiness = document.querySelector("#activeBusiness-container");
 listOfBusiness.innerHTML = "<h1>Active Business</h1>";
 
-
-
 const createHTML = (businessObj) => {
-  return `<h2>${businessObj.companyName}</h2>
+  return `<section>
+  <h2>${businessObj.companyName}</h2>
   <p>${businessObj.addressFullStreet}</p>
   <p>${businessObj.addressCity} ${businessObj.addressStateCode} ${businessObj.addressZipCode}</p>
-  <hr>`
+  <hr></section>`
  
 } 
 
@@ -141,10 +140,38 @@ const createHTML = (businessObj) => {
     <p>${business.addressCity} ${business.addressStateCode} ${business.addressZipCode}</p>
     </p>
     <hr>
-    
-   
-    `
+       `
 }); */
+
+// Array to contain all the New York businesses
+
+const listOfBusinessInNewYork = document.querySelector("#businessInNY-container");
+listOfBusinessInNewYork.innerHTML = "<h1>Business in New York</h1>";
+
+ const newYorkBusinesses = businesses.filter(business => {
+  let inNewYork = false
+  if (business.addressStateCode === "NY") {
+    inNewYork = true
+  }
+  return inNewYork
+})
+console.log(newYorkBusinesses)
+
+
+const createHTMLForBusinessInNY = (businessObj) => {
+  return `<h2>${businessObj.companyName}</h2>
+  <p>${businessObj.addressFullStreet}</p>
+  <p>${businessObj.addressCity} ${businessObj.addressStateCode} ${businessObj.addressZipCode}</p>
+  <hr>`
+ 
+} 
+
+newYorkBusinesses.forEach(business => {
+  let list = createHTMLForBusinessInNY(business);
+  listOfBusinessInNewYork.innerHTML += list;
+})
+
+
 
   
  
